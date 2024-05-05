@@ -24,21 +24,21 @@ function Home() {
             .then((res) => {
                 if (res.status === 204) alert('Note deleted successfully');
                 else alert('Something went wrong');
+                getNotes();
             })
             .catch((error) => alert(error));
-        getNotes();
     }
 
     const createNote = (e) => {
         e.preventDefault();
         api
-            .post('/api/notes', { content, title })
+            .post('/api/notes/', { content, title })
             .then((res) => {
                 if (res.status === 201) alert('Note created successfully');
                 else alert('Something went wrong');
+                getNotes();
             })
             .catch((error) => alert(error));
-        getNotes();
     }
 
     return <div>
