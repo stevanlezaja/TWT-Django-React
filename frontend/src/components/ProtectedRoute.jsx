@@ -5,8 +5,8 @@ import { REFRESH_TOKEN, ACCESS_TOKEN } from '../constants';
 import { useState, useEffect } from 'react';
 
 
-function ProtectedRoute({children}) {
-    const [isAuthorized, setIsAuthorized] = useState(false);
+function ProtectedRoute({ children }) {
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
         auth().catch(() => setIsAuthorized(false));
@@ -32,6 +32,8 @@ function ProtectedRoute({children}) {
 
     const auth = async () => {
         const token = localStorage.getItem(ACCESS_TOKEN);
+        console.log('Token:', token);
+
         if (!token) {
             setIsAuthorized(false);
             return;
